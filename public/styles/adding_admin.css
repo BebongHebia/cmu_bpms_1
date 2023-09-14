@@ -1,0 +1,24 @@
+.adding_admin_account_container{
+    width:50%;
+    margin:10px auto;
+    border:1px solid rgb(200, 200, 200);
+    border-radius: 10px;
+    overflow: hidden;
+
+}
+.adding_admin_account_container_header{
+    width:100%;
+    padding:10px;
+    background-color: rgb(16, 0, 107);
+}
+.adding_admin_account_container_title{
+    color: white;
+}
+.adding_admin_account_logos_container_logo{
+    width:100px;
+}
+.adding_admin_account_field_container{
+    width:100%;
+    padding:10px;
+    
+}

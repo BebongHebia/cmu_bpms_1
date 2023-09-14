@@ -1,0 +1,328 @@
+body{
+    font-family: Roboto;
+
+}
+.admin_page{
+    width:100%;
+}
+.side_bar_container{
+    width:100%;
+    background-color: rgb(18, 21, 46);
+    height:100vh;
+}
+.side_bar_container_header{
+    width:100%;
+}
+.side_bar_container_role_title{
+    color:white;
+}
+.side_bar_container_profile_container{
+    width:100%;
+    padding:5px;
+    margin:10px auto;
+}
+.admin_sidebar_profile_icon{
+    width:110px;
+}
+.admin_sidebar_profile_name{
+    color:white;
+}.admin_sidebar_profile_email{
+    color:white;
+}
+.sidebar_menu_container{
+    width:100%;
+    padding:10px;
+}
+.sidebar_menu_icons{
+    width:25px;
+}
+.sidebar_menu{
+    padding:0px;
+    margin:0px;
+}
+.links{
+    font-size: 12pt;
+    font-family: Roboto;
+    text-decoration: none;
+    color:white;
+    
+}
+.list{
+    list-style: none;
+    width: 100%;
+    margin-top:10px;
+    padding:5px;
+    transition: .5s;
+    border-radius: 10px;
+}
+.links:hover .list{
+    background-color: #F24162;
+    color:white;
+}
+.admin_content_header{
+    width:100%;
+    padding:5px;
+}
+.sidebar_admin_content_header_logo{
+    width:55px;
+}
+.sidebar_admin_content_title, .sidebar_admin_content_header_logo{
+    display: inline-block;
+}
+.bo_content_board{
+    width:100%;
+
+}
+.admin_content_dashboard{
+    width:100%;
+}
+.admin_time_now{
+    margin-right: 20px;
+}
+
+.clock {
+    font-size: 12pt;
+    font-weight: bold;
+    font-family: Roboto;
+}
+.admin_time_now, #MyClockDisplay{
+    display: inline-block;
+}
+.cards_panel_divs{
+    width:100%;
+    border:1px solid rgb(196, 196, 196);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.cards_panel_divs_header{
+    width:100%;
+    background-color: rgb(10, 20, 64);
+}
+.cards_panel_divs_header_title{
+    color:white;
+    padding:5px;
+}
+.cards_panels{
+    width:100%;
+    margin:10px auto;
+    padding:10px;
+
+}
+._cards{
+    width:20%;
+    background-color: rgb(231, 231, 255);
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 3px 3px 3px rgb(211, 211, 211);
+    float:left;
+    margin:10px;
+}
+._cards_header{
+    width:100%;
+    background-color: rgb(10, 20, 64);
+}
+._cards_header_title{
+    color:white;
+    font-family: Roboto;
+    letter-spacing: 1pt;
+
+}
+._cards_body{
+    width:100%;
+}
+.card_icon_png{
+    width:60px;
+}
+._cards_body_number, .card_icon_png{
+    display: inline-block;
+}
+._cards:hover{
+    transform: scale(1.1);
+    transition:.5s;
+}
+
+.offices_div_container{
+    width:100;
+    overflow: hidden;
+    border-radius: 5px;
+    border:1px solid rgb(205, 205, 205);
+}
+.offices_div_container_header{
+    background-color: rgb(10, 20, 64);
+    width: 100;
+}
+.offices_div_container_header_title{
+    color:white;
+}
+
+.offices_div_container_content{
+    width:100%;
+    height:75vh;
+}
+
+.office_card{
+    width:17%;
+    background-color:rgb(10, 20, 64);
+    border-radius: 10px;
+    padding:10px;
+    margin:10px;
+}
+.office_card_icon{
+    width:70px;
+}
+.office_card_text{
+    color:white;
+}
+
+.office_card_text, .office_card_icon{
+    display: inline-block;
+}
+.office_card_subtext1{
+    color:white;
+}
+.add_new_office_btn{
+    float: right;
+}
+
+.add_new_office_icon_button{
+    width:15px;
+    margin-right: 10px;;
+}
+.office_table_container{
+    width:95%;
+    height: 75%;
+    overflow-y: scroll;
+    margin:10px auto;
+}
+.office_table_wrapper{
+    width:100%;
+    height: 100%;
+}
+
+.admin_personel_container{
+    width:100%;
+    margin:auto;
+    overflow: hidden;
+    border-radius: 10px;
+    border:1px solid rgb(190, 190, 190);
+}
+.admin_personel_wrapper{
+    width:100%;
+}
+.admin_personel_wrapper_header{
+    width:100%;
+    background-color:rgb(10, 20, 64);
+}
+.admin_personel_wrapper_header_title{
+    color:white;
+}
+.admin_personel_card_container{
+    width:20%;
+    overflow: hidden;
+    padding:10px;
+    border-radius: 10px;
+    background-color:rgb(10, 20, 64);
+}
+.personel_card_icon{
+    width:25%;
+}
+.personel_card_text{
+    color:white
+}
+.personel_card_icon, .personel_card_text{
+    display: inline-block;
+}
+.personel_card_title{
+    color:white;
+}
+.add_personel_button_container{
+    width:20%;
+    float: right;
+}
+.admin_personels_container{
+    width:100%;
+    overflow: scroll;
+}
+.admin_personels_wrapper{
+    width:100vw;
+}
+
+.admin_item_categories_page{
+    width:100%;
+    border: 1px solid rgb(198, 198, 198);
+    border-radius: 10px;
+    overflow: hidden;
+}
+.admin_item_categories_page_header{
+    width:100%;
+    background-color:rgb(10, 20, 64);
+    color:white;
+}
+.admin_item_categories_page_action_buttons{
+    width:20%;
+    float:right;
+}
+.add_item_category_icon{
+    width:20%;
+}
+.admin_item_categories_table_content{
+    width:100%;
+    padding:10px;
+}
+
+.admin_item_page{
+    width: 100%;
+    border:1px solid rgb(206, 206, 206);
+    border-radius: 10px;
+    overflow: hidden;
+}
+.admin_item_page_header{
+    width: 100%;
+    background-color: rgb(10, 20, 64);
+    color:white;
+}
+.admin_item_page_action_wrapper{
+    width: 15%;
+    padding:10px;
+    float:right;
+}
+.admin_add_new_item_page{
+    width:50%;
+    margin:10px auto;
+    border: 1px solid rgb(196, 196, 196);
+    overflow: hidden;
+    border-radius: 10px;
+}
+.admin_add_new_item_header{
+    width:100%;
+}
+.adding_logos{
+    width:56%;
+    margin-top: 10px;
+}
+
+.admin_add_new_item_label{
+    width: 100%;
+    background-color: rgb(10, 20, 64);
+    color:white;
+}
+
+.admin_add_new_item_forms{
+    width:95%;
+    margin:10px auto;
+}
+
+.admin_item_page_table_content{
+    width:95%;
+    margin:10px auto;
+}
+
+.admin_item_page_table_wrapper{
+    width:100%;
+    overflow: scroll;
+}
+.admin_item_page_table_container{
+    width:150vw;
+
+}

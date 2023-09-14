@@ -1,0 +1,190 @@
+.bo_page{
+    width:100%;
+}
+
+.side_bar_container{
+    width:100%;
+    background-color: rgb(18, 21, 46);
+    height:100vh;
+}
+.side_bar_container_header{
+    width:100%;
+}
+.side_bar_container_role_title{
+    color:white;
+}
+.side_bar_container_profile_container{
+    width:100%;
+    padding:5px;
+    margin:10px auto;
+}
+.admin_sidebar_profile_icon{
+    width:110px;
+}
+.admin_sidebar_profile_name{
+    color:white;
+}.admin_sidebar_profile_email{
+    color:white;
+}
+.sidebar_menu_container{
+    width:100%;
+    padding:10px;
+}
+.sidebar_menu_icons{
+    width:25px;
+}
+.sidebar_menu{
+    padding:0px;
+    margin:0px;
+}
+.links{
+    font-size: 12pt;
+    font-family: Roboto;
+    text-decoration: none;
+    color:white;
+    
+}
+.list{
+    list-style: none;
+    width: 100%;
+    margin-top:10px;
+    padding:5px;
+    transition: .5s;
+    border-radius: 10px;
+}
+.links:hover .list{
+    background-color: #F24162;
+    color:white;
+}
+.admin_content_header{
+    width:100%;
+    padding:5px;
+}
+.sidebar_admin_content_header_logo{
+    width:55px;
+}
+.sidebar_admin_content_title, .sidebar_admin_content_header_logo{
+    display: inline-block;
+}
+
+/* Budget Office Dashboard */
+
+.budget_office_dashboard_container{
+    width:100%;
+    border-radius: 10px;
+    overflow: hidden;
+    border:1px solid rgb(226, 226, 226);
+}
+.budget_office_dashboard_container_header{
+    width:100%;
+    background-color:rgb(18, 21, 46);
+    color:white;
+}
+.budget_office_dashboard_container_content{
+    width:100%;
+    padding:10px;
+}
+
+.budget_office_budget_allocation_container{
+    width:100%;
+    border-radius: 10px;
+    overflow: hidden;
+    border:1px solid rgb(226, 226, 226);
+}
+.budget_office_budget_allocation_container_header{
+    width:100%;
+    background-color:rgb(18, 21, 46);
+    color:white;
+}
+.budget_office_budget_allocation_container_content{
+    width:100%;
+    padding:10px;
+}
+.budget_office_dashboard_container_content_button_wrapper{
+    width:23%;
+    float:right;
+    margin-right: 10px;
+}
+.button_add_icon{
+    width:20px;
+}
+.delete_icon_btn{
+    width:20px;
+}
+.budget_office_dashboard_container_content_table_wrapper{
+    width:100%;
+}
+
+.create_budget_allocation_page{
+    width:50%;
+    margin:auto;
+    border: 1px solid rgb(195, 195, 195);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.bo_create_allocation_logos{
+    width:50%;
+}
+
+.bo_create_allocation_header_div{
+    background-color: rgb(18, 21, 46);
+    color:white;
+}
+
+.bo_create_allocation_form{
+    width:100%;
+    margin:auto;
+}
+
+.create_budget_planning_page{
+    width:50%;
+    margin:auto;
+    border:1px solid rgb(169, 169, 169);
+    border-radius: 10px;
+    overflow: hidden;
+}
+.create_budget_planning_page_header{
+    width:100%;
+    padding:10px;
+}
+.create_budget_planning_page_header_title{
+    width:100%;
+    background-color: rgb(18, 21, 46);
+    color:white;
+    
+}
+
+.create_budget_planning_page_form_body{
+    width:100%;
+    padding:10px;
+}
+.budget_planning_page{
+    width:100%;
+    margin: 10px auto;
+    border: 1px solid rgb(215, 215, 215);
+    border-radius: 10px;
+    overflow: hidden;
+}
+.budget_planning_page_header{
+    width:100%;
+    background-color: rgb(18, 21, 46);
+}
+.budget_planning_page_header_text{
+    color:white;
+}
+
+.budget_planning_page_action_button{
+    width:20%;
+    float: right;
+}
+
+.budget_planning_page_action_button_wrapper{
+    width:100%;
+}
+.budget_planning_page_table{
+    padding:10px;
+}
+.budget_planning_page_table_content{
+    width:100%;
+}

@@ -1,0 +1,73 @@
+.bac_page{
+    width:100%;
+}
+.side_bar_container{
+    width:100%;
+    background-color: rgb(18, 21, 46);
+    height:100vh;
+}
+.side_bar_container_header{
+    width:100%;
+}
+.side_bar_container_role_title{
+    color:white;
+}
+.side_bar_container_profile_container{
+    width:100%;
+    padding:5px;
+    margin:10px auto;
+}
+.admin_sidebar_profile_icon{
+    width:110px;
+}
+.admin_sidebar_profile_name{
+    color:white;
+}.admin_sidebar_profile_email{
+    color:white;
+}
+.sidebar_menu_container{
+    width:100%;
+    padding:10px;
+}
+.sidebar_menu_icons{
+    width:25px;
+}
+.sidebar_menu{
+    padding:0px;
+    margin:0px;
+}
+.links{
+    font-size: 12pt;
+    font-family: Roboto;
+    text-decoration: none;
+    color:white;
+    
+}
+.list{
+    list-style: none;
+    width: 100%;
+    margin-top:10px;
+    padding:5px;
+    transition: .5s;
+    border-radius: 10px;
+}
+.links:hover .list{
+    background-color: #F24162;
+    color:white;
+}
+.admin_content_header{
+    width:100%;
+    padding:5px;
+}
+.sidebar_admin_content_header_logo{
+    width:55px;
+}
+.sidebar_admin_content_title, .sidebar_admin_content_header_logo{
+    display: inline-block;
+}
+.bac_content_board{
+    width:100%;
+}
+.admin_content_dashboard{
+    width:100%;
+}
