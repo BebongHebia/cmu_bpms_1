@@ -8,6 +8,7 @@ use App\Models\TblBudgetPlan;
 use App\Models\TblDepartment;
 use App\Models\TblItemCategory;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PpmpController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ItemsController;
 use App\Http\Controllers\BudgetController;
@@ -136,6 +137,18 @@ Route::get('/college-distribute-budget', function(){
     return view('college_folder/college_budget_distribution');
 });
 
+Route::get('/college-ppmp', function(){
+
+    $budgets = DB::table('tbl_budgets')
+    ->join('tbl_offices', 'tbl_budgets.office_id', '=', 'tbl_offices.id')
+    ->join('users', 'tbl_offices.id', '=', 'users.office_id')
+    ->where('users.office_id', '=', auth()->user()->office_id)
+    ->select('tbl_budgets.*')
+    ->get();
+
+    return view('college_folder/college_ppmp', ['myBudgets' => $budgets]);
+});
+
 Route::post('/create-my-departments', [DepartmentController::class, 'create_department']);
 
 
@@ -168,3 +181,5 @@ Route::post('/budget-office-close-budget-plan', [BudgetPlanController::class, 'c
 Route::post('/budget-office-reOpen-budget-plan', [BudgetPlanController::class, 'reOpen_budget_plan']);
 
 Route::post('/budget-office-delete-budget-plan', [BudgetPlanController::class, 'delete_budget_plan']);
+
+Route::post('/college-create-ppmp', [PpmpController::class, 'create_ppmp']);
