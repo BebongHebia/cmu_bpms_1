@@ -68,4 +68,18 @@ class ItemsController extends Controller
         Alert::warning('Deleted', 'Delete successfull');
         return redirect('/admin-item');
     }
+
+    public function getItemDetails($itemId)
+    {
+        // Retrieve item details from the database based on $itemId
+        $item = TblItem::find($itemId); // Replace 'TblItem' with your actual model
+
+        if ($item) {
+            // Return item details as JSON
+            return response()->json($item);
+        } else {
+            // Handle the case where the item is not found
+            return response()->json(['error' => 'Item not found'], 404);
+        }
+    }
 }

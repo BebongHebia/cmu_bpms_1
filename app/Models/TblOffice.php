@@ -28,9 +28,8 @@ class TblOffice extends Model
         return $this->hasMany(TblBudget::class, 'office_id');
     }
 
-    public function departments()
-{
-    return $this->hasMany(TblDepartment::class, 'office_id');
-}
+    public function departments(){
+        return $this->hasMany(TblDepartment::class, 'office_id');
+    }
 
 }

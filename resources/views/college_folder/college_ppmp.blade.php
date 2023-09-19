@@ -39,15 +39,20 @@
 
                                                 <label class="form-label">Select Budget Year Allocation</label>
                                                 <select class="form-select" name="budget_id">
-                                                    @foreach ($myBudgets as $item_myBudgets)
 
-                                                        <option value="{{ $item_myBudgets->id }}">{{ $item_myBudgets->year_allocated }}</option>
-                                                        
-                                                    @endforeach
+                                                        @if ($myBudgets->count() > 0)
+                                                            @foreach ($myBudgets as $item_myBudgets)
+                                                                <option value="{{ $item_myBudgets->id }}">{{ $item_myBudgets->year_allocated }}</option>
+                                                                <input type="hidden" value="{{ auth()->user()->id }}" name="user_id">
+                                                                <input type="hidden" value="{{ $item_myBudgets->office_id }}" name="office_id">
+                                                            @endforeach
+                                                        @else
+                                                            <Option disabled>No budgets found</Option>
+                                                        @endif
+                                                       
                                                 </select>
                                                 
-                                                <input type="hidden" value="{{ auth()->user()->id }}" name="user_id">
-                                                <input type="hidden" value="{{ $item_myBudgets->office_id }}" name="office_id">
+                                                
 
 
                                             
@@ -59,6 +64,41 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="college_ppmp_page_table_wrapper">
+                            <div class="college_ppmp_page_table_container">
+
+                                <table class="table">
+                                    <thead>
+                                        <th>No.#</th>
+                                        <th>PPMP Code</th>
+                                        <th>Year Allocation</th>
+                                        <th>Action</th>
+                                    </thead>
+
+                                    @foreach ($myppmp as $item_myppmp)
+                                        <tr>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $item_myppmp->ppmp_code }}</td>
+                                            <td>{{ $item_myppmp->year_allocated }}</td>
+                                            <td>
+                                                
+                                                <a href="/college-ppmp/ppmp={{ $item_myppmp->ppmp_code }}" class="btn btn-success">Purchase Item</a>
+                                                <button class="btn btn-danger">Delete</button>
+                                            
+                                            </td>
+                                        </tr>
+                                    @endforeach
+
+                                    
+                                </table>
+
                             </div>
                         </div>
                     </div>

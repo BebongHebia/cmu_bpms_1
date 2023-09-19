@@ -2,11 +2,13 @@
 
 use App\Models\User;
 use App\Models\TblItem;
+use App\Models\TblPpmp;
 use App\Models\TblBudget;
 use App\Models\TblOffice;
 use App\Models\TblBudgetPlan;
 use App\Models\TblDepartment;
 use App\Models\TblItemCategory;
+use App\Models\TblPurchasedItem;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PpmpController;
 use App\Http\Controllers\UserController;
@@ -16,6 +18,7 @@ use App\Http\Controllers\OfficeController;
 use App\Http\Controllers\BudgetPlanController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\ItemCategoryController;
+use App\Http\Controllers\PurchasedItemsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -146,8 +149,52 @@ Route::get('/college-ppmp', function(){
     ->select('tbl_budgets.*')
     ->get();
 
-    return view('college_folder/college_ppmp', ['myBudgets' => $budgets]);
+    $my_ppmps = DB::table('tbl_budget_plans')
+    ->join('tbl_budgets', 'tbl_budget_plans.id', '=', 'tbl_budgets.budget_plan_id')
+    ->join('users', 'tbl_budgets.office_id', '=', 'users.office_id')
+    ->join('tbl_ppmps', 'users.office_id', '=', 'tbl_ppmps.office_id')
+    ->where('users.office_id', '=', auth()->user()->office_id)
+    ->select('tbl_budget_plans.*', 'tbl_ppmps.*', 'tbl_budgets.*')
+    ->get();
+
+
+    return view('college_folder/college_ppmp', ['myBudgets' => $budgets, 'myppmp' => $my_ppmps]);
 });
+
+Route::get('/college-ppmp/ppmp={ppmp_id}', function($ppmp_id){
+
+    $userId = auth()->user()->id;
+    
+    $result = DB::table('tbl_purchased_items')
+    ->join('tbl_offices', 'tbl_purchased_items.office_id', '=', 'tbl_offices.id')
+    ->join('tbl_ppmps', 'tbl_purchased_items.ppmp_id', '=', 'tbl_ppmps.id')
+    ->join('users', 'tbl_purchased_items.user_id', '=', 'users.id')
+    ->join('tbl_item_categories', 'tbl_purchased_items.item_category_id', '=', 'tbl_item_categories.id')
+    ->join('tbl_items', function ($join) {
+        $join->on('tbl_purchased_items.item_id', '=', 'tbl_items.id')
+             ->on('tbl_purchased_items.item_code', '=', 'tbl_items.item_code')
+             ->on('tbl_item_categories.id', '=', 'tbl_items.item_category_id');
+    })
+    ->where('users.id', $userId)
+    ->select('tbl_purchased_items.*', 'tbl_offices.*', 'tbl_ppmps.*', 'users.*', 'tbl_item_categories.*', 'tbl_items.*')
+    ->get();
+
+
+
+    
+
+    $get_ppmp_details = TblPpmp::where('ppmp_code', '=', $ppmp_id)->first(); // Use first() to retrieve a single row
+    
+    $budgets_details = TblBudget::find($get_ppmp_details->budget_id);
+    
+    return view('college_folder/college_purchase_item', compact('get_ppmp_details'), ['items' => TblItem::all(), 'my_purchased_items' => $result, 'budgets_details' => $budgets_details]);
+});
+
+Route::post('/college-remove-purchased-item', [PurchasedItemsController::class, 'college_remove_item']);
+
+Route::post('/college-add-item-ppmp', [PurchasedItemsController::class, 'college_add_item']);
+
+Route::get('/get-item-details/{itemId}', [ItemsController::class, 'getItemDetails']);
 
 Route::post('/create-my-departments', [DepartmentController::class, 'create_department']);
 

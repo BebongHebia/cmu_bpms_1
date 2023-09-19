@@ -121,3 +121,59 @@
     padding:5px;
     float:right;
 }
+
+.college_ppmp_page_table_wrapper{
+    width:100%;
+    height: 75vh;
+    overflow: scroll;
+    padding:10px;
+
+}
+
+.college_ppmp_page_table_container{
+    width:100%;
+}
+
+.wrapper{
+    width:100%;
+    padding:0px;
+    margin:0px;
+}
+
+.college_purchase_item_page{
+    width:95%;
+    height:100vh;
+    margin:10px auto;
+    border: 1px solid rgb(145, 145, 145);
+    border-radius: 10px;
+}
+.my_item_purchased{
+    width:100%;
+    margin:10px auto;
+    overflow: hidden;
+    border-radius: 10px;
+}
+.my_item_purchased_table_header{
+    background-color: rgb(18, 21, 46);
+    color:white;
+    border-radius: 10px;
+    
+}
+.my_item_purchased_table_wrapper{
+    width:100%;
+    border:1px solid rgb(186, 186, 186);
+    border-radius: 10px;
+    overflow: scroll;
+    height:55vh;
+
+}
+.my_purchased_items_table_container{
+    width:100vw;
+    height:100%;
+}
+.header_divs{
+    width:100%;
+    background-color: rgb(18, 21, 46);
+    color:white;
+    padding:5px;
+}
