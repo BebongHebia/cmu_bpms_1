@@ -124,14 +124,14 @@
 
 .college_ppmp_page_table_wrapper{
     width:100%;
-    height: 75vh;
+    height: 65vh;
     overflow: scroll;
     padding:10px;
-
 }
 
 .college_ppmp_page_table_container{
     width:100%;
+    height:100%;
 }
 
 .wrapper{
@@ -142,7 +142,7 @@
 
 .college_purchase_item_page{
     width:95%;
-    height:100vh;
+    height:105vh;
     margin:10px auto;
     border: 1px solid rgb(145, 145, 145);
     border-radius: 10px;
@@ -176,4 +176,9 @@
     background-color: rgb(18, 21, 46);
     color:white;
     padding:5px;
+}
+.college_purchase_ppmp_table_wrapper{
+    width:100%;
+    height:60vh;
+    overflow: scroll;
 }

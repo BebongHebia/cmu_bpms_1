@@ -17,16 +17,31 @@ class TblPurchasedItem extends Model
         'user_id',
         'budget_id',
         'office_id',
+        'item_name',
         'quantity_size',
         'item_category_id',
         'purhcased_item_status',
         'date_procured',
+        'jan',
+        'feb',
+        'mar',
+        'apr',
+        'may',
+        'jun',
+        'jul',
+        'aug',
+        'sep',
+        'oct',
+        'nov',
+        'dec',
+        'total_cost',
         'is_consolidated',
         'ppmp_part',
         
     ];
 
-    public function items(){
-        return $this->hasMany(TblItem::class, 'item_id');
+    public function item()
+    {
+        return $this->belongsTo(TblItem::class, 'item_id', 'id');
     }
 }

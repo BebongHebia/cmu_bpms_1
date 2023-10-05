@@ -26,4 +26,8 @@ class TblItem extends Model
     {
         return $this->belongsTo(TblItemCategory::class, 'item_category_id');
     }
+
+    public function purchased_items(){
+        return $this->belongsTo(TblPurchasedItem::class, 'item_id');
+    }
 }

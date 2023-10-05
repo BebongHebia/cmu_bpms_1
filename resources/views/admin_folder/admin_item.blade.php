@@ -143,7 +143,7 @@
                                 <div class="admin_item_page_table_container">
                                     <table class="table">
                                         <thead>
-                                            <th>Action</th>
+                                            
                                             <th>No.#</th>
                                             <th>Item Code</th>
                                             <th>Item Name</th>
@@ -153,10 +153,28 @@
                                             <th>Unit of measure</th>
                                             <th>Supplier</th>
                                             <th>Availability</th>
+                                            <th>Action</th>
                                         </thead>
 
                                         @foreach ($items as $item_items)
                                             <tr>
+                                                
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $item_items->item_code }}</td>
+                                                <td>{{ $item_items->item_name }}</td>
+                                                <td>{{ $item_items->item_description }}</td>
+                                                <td>{{ $item_items->item_price }}</td>
+                                                <td>{{ $item_items->category->item_category_name }}</td>
+                                                <td>{{ $item_items->item_unit_measure }}</td>
+                                                <td>{{ $item_items->item_from }}</td>
+                                                <td>
+                                                    @if ($item_items->availability == 1)
+                                                        Available
+                                                    @else
+                                                        Not Availabile
+                                                    @endif
+                                            
+                                                </td>
                                                 <td>
                                                     <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edit_items{{ $item_items->id }}">Edit</button>
 
@@ -301,22 +319,6 @@
 
 
 
-                                                </td>
-                                                <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $item_items->item_code }}</td>
-                                                <td>{{ $item_items->item_name }}</td>
-                                                <td>{{ $item_items->item_description }}</td>
-                                                <td>{{ $item_items->item_price }}</td>
-                                                <td>{{ $item_items->category->item_category_name }}</td>
-                                                <td>{{ $item_items->item_unit_measure }}</td>
-                                                <td>{{ $item_items->item_from }}</td>
-                                                <td>
-                                                    @if ($item_items->availability == 1)
-                                                        Available
-                                                    @else
-                                                        Not Availabile
-                                                    @endif
-                                            
                                                 </td>
                                             </tr>
                                         @endforeach

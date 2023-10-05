@@ -90,16 +90,29 @@
                         <div class="admin_item_categories_table_content">
                             <table class="table">
                                 <thead>
-                                    <th>Action</th>
                                     <th>No.#</th>
                                     <th>Category Code</th>
                                     <th>Category Name</th>
                                     <th>Description</th>
                                     <th>Status</th>
+                                    <th>Action</th>
                                 </thead>
 
                                 @foreach ($item_category as $item_category_item)
                                     <tr>
+                                        
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $item_category_item->item_category_code }}</td>
+                                        <td>{{ $item_category_item->item_category_name }}</td>
+                                        <td>{{ $item_category_item->item_category_description }}</td>
+                                        <td>
+                                            @if ($item_category_item->item_category_status == 1)
+                                                Active
+                                            @else
+                                                Inactive
+                                            @endif
+                                        </td>
+
                                         <td>
                                             <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edit_category{{$item_category_item->id}}">Edit</button>
 
@@ -189,17 +202,6 @@
                                                 </div>
                                             </div>
 
-                                        </td>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item_category_item->item_category_code }}</td>
-                                        <td>{{ $item_category_item->item_category_name }}</td>
-                                        <td>{{ $item_category_item->item_category_description }}</td>
-                                        <td>
-                                            @if ($item_category_item->item_category_status == 1)
-                                                Active
-                                            @else
-                                                Inactive
-                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach

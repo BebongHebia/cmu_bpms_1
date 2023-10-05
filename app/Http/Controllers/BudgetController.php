@@ -37,6 +37,7 @@ class BudgetController extends Controller
 
 
             $inputs['budget_status']  = 1;
+            $inputs['budget_spent']  = 0;
 
 
 

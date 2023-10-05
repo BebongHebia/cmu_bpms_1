@@ -14,6 +14,7 @@ class TblBudget extends Model
         'office_id',
         'year_allocated',
         'budget_amount',
+        'budget_spent',
         'budget_status',
         'budget_plan_id',
     ];

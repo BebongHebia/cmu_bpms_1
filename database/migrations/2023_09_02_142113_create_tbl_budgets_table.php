@@ -16,6 +16,7 @@ return new class extends Migration
             $table->Integer('office_id');
             $table->Integer('budget_plan_id');
             $table->double('budget_amount');
+            $table->double('budget_spent');
             $table->string('year_allocated');
             $table->Integer('budget_status');
             $table->timestamps();

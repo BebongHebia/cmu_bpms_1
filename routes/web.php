@@ -81,6 +81,7 @@ Route::get('/bac_office_sidebar', function(){
     return view('bac_folder/bac_sidebar');
 });
 
+
 Route::get('/college_sidebar', function(){
     return view('college_folder/college_sidebar');
 });
@@ -120,6 +121,7 @@ Route::get('/admin-sidebar', function () {
 });
 
 Route::get('/admin-item', function(){
+    
     return view('admin_folder/admin_item', ['items' => TblItem::all(), 'item_category' => TblItemCategory::all(), 'category' => TblItemCategory::all()]);
 });
 
@@ -127,6 +129,8 @@ Route::get('/admin-item', function(){
 Route::get('/college_dashboard', function (){
     return view('college_folder/college_dashboard');
 });
+
+Route::get('/search-items', [ItemsController::class, 'searchItems']);
 
 Route::get('/college-departments', function(){
     
@@ -154,7 +158,7 @@ Route::get('/college-ppmp', function(){
     ->join('users', 'tbl_budgets.office_id', '=', 'users.office_id')
     ->join('tbl_ppmps', 'users.office_id', '=', 'tbl_ppmps.office_id')
     ->where('users.office_id', '=', auth()->user()->office_id)
-    ->select('tbl_budget_plans.*', 'tbl_ppmps.*', 'tbl_budgets.*')
+    ->select('tbl_budget_plans.*', 'tbl_ppmps.*', 'tbl_budgets.*', 'tbl_ppmps.id as ppmp_id')
     ->get();
 
 
@@ -176,7 +180,13 @@ Route::get('/college-ppmp/ppmp={ppmp_id}', function($ppmp_id){
              ->on('tbl_item_categories.id', '=', 'tbl_items.item_category_id');
     })
     ->where('users.id', $userId)
-    ->select('tbl_purchased_items.*', 'tbl_offices.*', 'tbl_ppmps.*', 'users.*', 'tbl_item_categories.*', 'tbl_items.*')
+    ->select('tbl_purchased_items.*', 'tbl_offices.*', 'tbl_ppmps.*', 'users.*', 'tbl_item_categories.*', 'tbl_items.*', 'tbl_purchased_items.id as purchased_item_id')
+    ->get();
+
+    $my_purchased_purchase_item_no_available = TblPurchasedItem::join('users', 'tbl_purchased_items.user_id', '=', 'users.id')
+    ->where('users.id', $userId)
+    ->where('ppmp_part', 2)
+    ->select('users.*', 'tbl_purchased_items.*', 'tbl_purchased_items.id as purchased_item_id')
     ->get();
 
 
@@ -187,12 +197,16 @@ Route::get('/college-ppmp/ppmp={ppmp_id}', function($ppmp_id){
     
     $budgets_details = TblBudget::find($get_ppmp_details->budget_id);
     
-    return view('college_folder/college_purchase_item', compact('get_ppmp_details'), ['items' => TblItem::all(), 'my_purchased_items' => $result, 'budgets_details' => $budgets_details]);
+    return view('college_folder/college_purchase_item', compact('get_ppmp_details'), ['items' => TblItem::all(), 'my_purchased_items' => $result, 'budgets_details' => $budgets_details, 'my_purchased_purchase_item_no_available' => $my_purchased_purchase_item_no_available]);
 });
 
 Route::post('/college-remove-purchased-item', [PurchasedItemsController::class, 'college_remove_item']);
 
+Route::post('/college-remove-purchased-item_na', [PurchasedItemsController::class, 'college_remove_item_na']);
+
 Route::post('/college-add-item-ppmp', [PurchasedItemsController::class, 'college_add_item']);
+
+Route::post('/college-add-item-ppmp_not_available', [PurchasedItemsController::class, 'college_add_item_not_there']);
 
 Route::get('/get-item-details/{itemId}', [ItemsController::class, 'getItemDetails']);
 
@@ -230,3 +244,5 @@ Route::post('/budget-office-reOpen-budget-plan', [BudgetPlanController::class, '
 Route::post('/budget-office-delete-budget-plan', [BudgetPlanController::class, 'delete_budget_plan']);
 
 Route::post('/college-create-ppmp', [PpmpController::class, 'create_ppmp']);
+
+Route::post('/college_generate_my_ppmp', [PurchasedItemsController::class, 'generate_purhcased_item']);

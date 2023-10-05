@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('tbl_ppmps', function (Blueprint $table) {
             $table->id();
             $table->String('ppmp_code');
-            $table->Integer('user_id');
+            $table->Integer('userid');
             $table->Integer('office_id');
             $table->Integer('budget_id');
             $table->Integer('ppmp_status');

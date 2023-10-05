@@ -82,4 +82,12 @@ class ItemsController extends Controller
             return response()->json(['error' => 'Item not found'], 404);
         }
     }
+
+    public function searchItems(Request $request)
+    {
+        $query = $request->input('query');
+        $items = TblItem::where('item_name', 'like', '%' . $query . '%')->get();
+
+        return response()->json($items);
+    }
 }
