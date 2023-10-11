@@ -83,7 +83,7 @@ class UserController extends Controller
             }elseif($userDetails == 2){
                 return redirect()->intended('/budget-office-dashboard');
             }elseif($userDetails == 3){
-                return redirect()->intended('/bac_office_sidebar');
+                return redirect()->intended('/bac-office-dashboard');
             }elseif($userDetails == 4){
                 return redirect()->intended('/college_dashboard');
             }

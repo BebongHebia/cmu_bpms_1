@@ -25,8 +25,8 @@
                                                 <div class="col-sm-12">
                                                     <center>
                                                         <img src="images/profile.png" class="img-fluid admin_sidebar_profile_icon">
-                                                        <h5 class="text-center admin_sidebar_profile_name">BidsAward D. Smith</h5>
-                                                        <p class="text-center admin_sidebar_profile_email">johnsmith@gmail.com</p>
+                                                        <h5 class="text-center admin_sidebar_profile_name">{{ auth()->user()->first_name . " " . auth()->user()->last_name }}</h5>
+                                                        <p class="text-center admin_sidebar_profile_email">{{ auth()->user()->email }}</p>
                                                     </center>
                                                 </div>
                                             </div>
@@ -40,18 +40,17 @@
                                             <div clas="row">
                                                 <div class="col-sm-12">
                                                     <ul class="sidebar_menu">
-                                                        <a href="/budget-office-dashboard" class="links"><li class="list"><img src="images/dashboard_icon.png" class="img-fluid sidebar_menu_icons"> Dashboard</li></a>
-                                                        <a href="/budget-officeUnitsCollege" class="links"><li class="list"><img src="images/department_icon.png" class="img-fluid sidebar_menu_icons"> Unit/Office/College</li></a>
-                                                        <a href="/budget-office-budgets-allocation" class="links"><li class="list"><img src="images/budget_icon.png" class="img-fluid sidebar_menu_icons"> Budget Allocation</li></a>
-                                                        <a href="/budget-office-reports" class="links"><li class="list"><img src="images/ppmp_icon.png" class="img-fluid sidebar_menu_icons"> Reports</li></a>
+                                                        <a href="/bac-office-dashboard" class="links"><li class="list"><img src="images/dashboard_icon.png" class="img-fluid sidebar_menu_icons"> Dashboard</li></a>
+                                                        <a href="/bac-office-ppmp" class="links"><li class="list"><img src="images/ppmp_icon.png" class="img-fluid sidebar_menu_icons"> PPMP</li></a>
+                                                        <a href="/bac-college-unit" class="links"><li class="list"><img src="images/department_icon.png" class="img-fluid sidebar_menu_icons"> Unit/Office/College</li></a>
+                                                        <a href="/bac-office-budgets-allocation" class="links"><li class="list"><img src="images/budget_icon.png" class="img-fluid sidebar_menu_icons"> Budget Allocation</li></a>
+                                                        <a href="/bac-office-reports" class="links"><li class="list"><img src="images/ppmp_icon.png" class="img-fluid sidebar_menu_icons"> Reports</li></a>
                                                     </ul>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
-
                             </div>
                         </div>
                         <div class="col-sm-10">
@@ -65,7 +64,30 @@
                                             </div>
                                             <div class="col-sm-2">
                                                 <div class="d-grid gap-2">
-                                                    <button class="btn btn-danger mt-3" type="button"> Logout</button>
+                                                    <button class="btn btn-danger mt-3" type="button" data-bs-toggle="modal" data-bs-target="#bac_logout_btn"> Logout</button>
+                                                    <!-- Modal -->
+                                                    <div class="modal fade" id="bac_logout_btn" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Logout</h1>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <h3 class="text-center">Are you sure you want to logout?</h3>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                    <form action="/user-logout" method="POST">
+                                                                        @csrf
+                                                                        <button class="btn btn-danger">Confirm</button>
+                                                                    </form>
+                                                                    
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
                                                 </div>
                                             </div>
                                         </div>

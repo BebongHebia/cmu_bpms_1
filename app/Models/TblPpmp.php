@@ -22,5 +22,13 @@ class TblPpmp extends Model
         return $this->hasMany(TblBudget::class, 'budget_id');
     }
 
+    public function office_college(){
+        return $this->belongsTo(TblOffice::class, 'office_id');
+    }
+
+    public function budgets(){
+        return $this->belongsTo(TblBudget::class, 'budget_id');
+    }
+
     
 }

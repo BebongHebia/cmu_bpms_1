@@ -18,6 +18,7 @@ return new class extends Migration
             $table->Integer('office_id');
             $table->Integer('budget_id');
             $table->Integer('ppmp_status');
+            $table->Integer('for_year');
             $table->timestamps();
         });
     }

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->String('item_category_name');
             $table->String('item_category_description');
             $table->Integer('item_category_status');
+            $table->Integer('category_order');
             $table->timestamps();
         });
     }

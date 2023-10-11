@@ -44,7 +44,7 @@ Route::get('/', function () {
             }elseif($userDetails == 2){
                 return redirect()->intended('/budget-office-dashboard');
             }elseif($userDetails == 3){
-                return redirect()->intended('/bac_office_sidebar');
+                return redirect()->intended('/bac-office-sidebar');
             }elseif($userDetails == 4){
                 return redirect()->intended('/college_dashboard');
             }
@@ -67,20 +67,38 @@ Route::get('/admin-offices', function () {
     return view('admin_folder/admin_offices', ['offices' => TblOffice::all()]);
 });
 
-
 Route::get('/admin-personel', function(){
     return view('admin_folder/admin_personel', ['personels' => User::all(), 'offices' => TblOffice::all()]);
 });
-
 
 Route::get('/budget_office_sidebar', function(){
     return view('budget_office/bo_sidebar');
 });
 
-Route::get('/bac_office_sidebar', function(){
-    return view('bac_folder/bac_sidebar');
+Route::get('/bac-office-dashboard', function(){
+    return view('bac_folder/bac_dashboard');
 });
 
+Route::get('/bac-college-unit', function(){
+    return view('bac_folder/bac_college');
+});
+
+Route::get('/bac-office-budgets-allocation', function(){
+    return view('bac_folder/bac_budgets');
+});
+
+Route::get('/bac-office-reports', function(){
+    return view('bac_folder/bac_reports');
+});
+
+Route::get('/bac-office-ppmp', function(){
+
+    $bac_ppmp = TblPpmp::where('for_year', date("Y") + 1)
+                        ->where('ppmp_status', 1)
+                        ->get();
+
+    return view('bac_folder/bac_ppmp', ['bac_ppmp_unconsol' => $bac_ppmp]);
+});
 
 Route::get('/college_sidebar', function(){
     return view('college_folder/college_sidebar');
@@ -88,6 +106,15 @@ Route::get('/college_sidebar', function(){
 
 Route::get('/budget-office-dashboard', function(){
     return view('budget_office/bo_dashboard');
+});
+
+Route::get('/budget-office-ppmp', function(){
+    
+    $pending_ppmp = TblPpmp::where('for_year', 2024)
+                ->where('ppmp_status', 1)
+                ->get();
+
+    return view('budget_office/bo_ppmp', ['pending_ppmp' => $pending_ppmp]);
 });
 
 Route::get('/budget-office-budgets-allocation', function(){

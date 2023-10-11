@@ -21,4 +21,9 @@ class TblItemCategory extends Model
     {
         return $this->hasMany(TblItem::class, 'id');
     }
+
+    public function purchasedItems()
+    {
+        return $this->hasMany(TblPurchasedItem::class, 'item_category_id');
+    }
 }

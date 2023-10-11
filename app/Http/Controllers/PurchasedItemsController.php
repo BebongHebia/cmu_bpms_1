@@ -6,6 +6,7 @@ use PDF;
 use App\Models\TblPpmp;
 use App\Models\TblBudget;
 use Illuminate\Http\Request;
+use App\Models\TblItemCategory;
 use App\Models\TblPurchasedItem;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
@@ -318,13 +319,22 @@ class PurchasedItemsController extends Controller
         ->get();
         */
 
-        $my_purchased_items = TblPurchasedItem::where('user_id', '=', auth()->user()->id)->get();
+        $my_purchased_items = TblPurchasedItem::where('user_id', auth()->user()->id)
+        ->with('category') // Load the itemCategory relationship
+        ->orderBy('item_category_id') // Optional: Order by category ID
+        ->get();
+        
+
+        $item_category = TblItemCategory::all();
+        $item_category_count = $item_category->count();
+
+
+        $my_ppmp = TblPpmp::find($request->college_ppmp_id);
 
 
 
 
-
-        return view('pdf.view', ['my_purchased_items' => $my_purchased_items, 'get_my_office' => $get_my_office]);
+        return view('pdf.view', ['my_ppmp' => $my_ppmp, 'my_purchased_items' => $my_purchased_items, 'get_my_office' => $get_my_office, 'item_category_count' => $item_category_count]);
 
 
         /*

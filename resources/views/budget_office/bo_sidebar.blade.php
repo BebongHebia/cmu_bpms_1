@@ -25,8 +25,8 @@
                                                 <div class="col-sm-12">
                                                     <center>
                                                         <img src="images/profile.png" class="img-fluid admin_sidebar_profile_icon">
-                                                        <h5 class="text-center admin_sidebar_profile_name">Budget D. Smith</h5>
-                                                        <p class="text-center admin_sidebar_profile_email">johnsmith@gmail.com</p>
+                                                        <h5 class="text-center admin_sidebar_profile_name">{{ auth()->user()->first_name . " " . auth()->user()->last_name}}</h5>
+                                                        <p class="text-center admin_sidebar_profile_email">{{ auth()->user()->email }}</p>
                                                     </center>
                                                 </div>
                                             </div>
@@ -44,6 +44,7 @@
                                                         <a href="/budget-office-budgets-planning" class="links"><li class="list"><img src="images/budget_icon.png" class="img-fluid sidebar_menu_icons"> Budget Planning</li></a>
 
                                                         <a href="/budget-office-budgets-allocation" class="links"><li class="list"><img src="images/budget_icon.png" class="img-fluid sidebar_menu_icons"> Budget Allocation</li></a>
+                                                        <a href="/budget-office-ppmp" class="links"><li class="list"><img src="images/ppmp_icon.png" class="img-fluid sidebar_menu_icons"> Reported PPMP</li></a>
                                                         <a href="/budget-office-reports" class="links"><li class="list"><img src="images/ppmp_icon.png" class="img-fluid sidebar_menu_icons"> Reports</li></a>
                                                     </ul>
                                                 </div>
