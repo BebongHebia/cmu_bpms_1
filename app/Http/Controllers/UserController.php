@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\TblPpmp;
+use App\Models\TblBudget;
+use App\Models\TblOffice;
 use Illuminate\Http\Request;
+use App\Models\TblPurchasedItem;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -152,5 +156,19 @@ class UserController extends Controller
     
         Alert::warning('Deleted', 'Delete successfull');
         return redirect('/admin-personel');
+    }
+
+    public function budget_show_ppmp($ppmp_id){
+        $this_ppmp = TblPpmp::find($ppmp_id);
+
+        $office_info = TblOffice::find($this_ppmp['office_id']);
+
+        $user_info = User::find($this_ppmp['user_id']);
+
+        $budget_plan_info = TblBudget::find($this_ppmp['budget_id']);
+
+        $this_purchased_items = TblPurchasedItem::where('ppmp_id', $ppmp_id)->get();
+
+        return view('budget_office.bo_show_ppmp', ['this_ppmp' => $this_ppmp, 'office_info' => $office_info, 'user_info' => $user_info, 'this_purchased_items' => $this_purchased_items, 'budget_plan_info' => $budget_plan_info]);
     }
 }

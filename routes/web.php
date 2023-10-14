@@ -117,6 +117,12 @@ Route::get('/budget-office-ppmp', function(){
     return view('budget_office/bo_ppmp', ['pending_ppmp' => $pending_ppmp]);
 });
 
+Route::post('/bo-action-approve-ppmp', [PurchasedItemsController::class, 'budget_approve_ppmp']);
+
+Route::post('/bo-action-decline-ppmp', [PurchasedItemsController::class, 'budget_decline_ppmp']);
+
+Route::get('/budget-office-ppmp/ppmp={ppmp_id}', [UserController::class, 'budget_show_ppmp']);
+
 Route::get('/budget-office-budgets-allocation', function(){
     return view('budget_office/bo_budget_allocation', ['budgets' => TblBudget::all(), 'offices' => TblOffice::all(), 'budget_plans' => TblBudgetPlan::all()]);
 });

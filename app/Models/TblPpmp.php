@@ -30,5 +30,9 @@ class TblPpmp extends Model
         return $this->belongsTo(TblBudget::class, 'budget_id');
     }
 
+    public function get_user_email(){
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
     
 }

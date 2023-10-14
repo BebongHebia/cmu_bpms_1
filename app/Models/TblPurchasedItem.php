@@ -50,5 +50,7 @@ class TblPurchasedItem extends Model
         return $this->belongsTo(TblItemCategory::class, 'item_category_id');
     }
 
+   
+
     
 }

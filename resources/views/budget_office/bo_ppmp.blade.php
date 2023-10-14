@@ -36,7 +36,7 @@
                     <div class="col-sm-12">
                         <div class="budget_office_ppmp_pending_table_container">
                             <div class="budget_office_ppmp_pending_table_wrapper">
-                                <table class="table">
+                                <table class="table table-striped">
                                     <tr>
                                         <thead class="table-dark">
                                             <th>No.#</th>
@@ -58,21 +58,60 @@
                                             <td>₱{{ number_format($item_pending_ppmp->budgets->budget_spent, 2) }}</td>
                                             <td>{{ $item_pending_ppmp->for_year }}</td>
                                             <td>
+                                                <a href="/budget-office-ppmp/ppmp={{ $item_pending_ppmp->id }}" class="btn btn-warning">Show PPMP</a>
                                                 <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#ppmp_{{ $item_pending_ppmp->id }}">Approve</button>
+                                                <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#decline_ppmp_{{ $item_pending_ppmp->id }}">Decline</button>
+                                                
                                                 <!-- Modal -->
                                                 <div class="modal fade" id="ppmp_{{ $item_pending_ppmp->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
                                                             <div class="modal-header">
-                                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Pending PPMP</h1>
+                                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Approve PPMP</h1>
                                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
                                                             <div class="modal-body">
-                                                            ...
+                                                                <form action="/bo-action-approve-ppmp" method="POST">
+                                                                    @csrf
+                                                                    <h5 class="text-center">Are you sure you want to approve :</h5>
+                                                                    <p class="text-start">Office/College/Units :<b>{{ $item_pending_ppmp->office_college->office_name }}</b></p>
+                                                                
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                                <button type="button" class="btn btn-primary">Save changes</button>
+                                                                <input type="hidden" name="ppmp_id" class="form-control" value="{{ $item_pending_ppmp->id }}">
+                                                                <input type="hidden" name="user_email" class="form-control" value="{{ $item_pending_ppmp->get_user_email->email }}">
+                                                                <button class="btn btn-success">Approve</button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="decline_ppmp_{{ $item_pending_ppmp->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Decline PPMP</h1>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form action="/bo-action-decline-ppmp" method="POST">
+                                                                    @csrf
+                                                                    <h5 class="text-center">Are you sure you want to Decline :</h5>
+                                                                    <p class="text-start">Office/College/Units :<b>{{ $item_pending_ppmp->office_college->office_name }}</b></p>
+                                                                    <label class="form-label">Reasons For Disapproval</label>
+                                                                    <textarea name="reasons" class="form-control">
+                                                                    </textarea>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                <input type="hidden" name="ppmp_id" class="form-control" value="{{ $item_pending_ppmp->id }}">
+                                                                <input type="hidden" name="user_email" class="form-control" value="{{ $item_pending_ppmp->get_user_email->email }}">
+                                                                
+                                                                <button class="btn btn-danger">Confirm</button>
+                                                                </form>
                                                             </div>
                                                         </div>
                                                     </div>

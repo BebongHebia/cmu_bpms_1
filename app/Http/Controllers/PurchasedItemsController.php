@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use PDF;
+use App\Mail\SendMail;
 use App\Models\TblPpmp;
 use App\Models\TblBudget;
 use Illuminate\Http\Request;
 use App\Models\TblItemCategory;
 use App\Models\TblPurchasedItem;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\BudgetOfficeDeclinePPMP;
 use Illuminate\Support\Facades\Redirect;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -350,6 +353,44 @@ class PurchasedItemsController extends Controller
         // Return the PDF to the user or save it to a file
         return $pdf->stream('document.pdf');
         */
+    }
+
+    public function budget_approve_ppmp(Request $request){
+
+        $ppmp_info = TblPpmp::find($request->ppmp_id);
+
+        $ppmp_info->ppmp_status = 0;
+
+        $ppmp_info->save();
+
+        $recipientEmail = $request->user_email;
+
+
+        Mail::to($recipientEmail)->send(new SendMail());
+        Alert::success('Success', 'PPMP Approved Successfully');
+        return redirect('/budget-office-ppmp');
+        
+
+    }
+    public function budget_decline_ppmp(Request $request){
+
+        $mailData = [
+            'body' => $request->reasons
+        ];
+
+        $ppmp_info = TblPpmp::find($request->ppmp_id);
+
+        $ppmp_info->ppmp_status = 2;
+
+        $ppmp_info->save();
+
+        $recipientEmail = $request->user_email;
+        Mail::to($recipientEmail)->send(new BudgetOfficeDeclinePPMP($mailData));
+        
+        Alert::success('Success', 'PPMP Decline Successfully');
+        return redirect('/budget-office-ppmp');
+        
+
     }
 
 }

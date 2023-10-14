@@ -91,6 +91,8 @@
                                             <td>
                                                 @if ($item_myppmp->ppmp_status == 1)
                                                     Active
+                                                @elseif ($item_myppmp->ppmp_status == 2)
+                                                    Declined
                                                 @else
                                                     Locked
                                                 @endif

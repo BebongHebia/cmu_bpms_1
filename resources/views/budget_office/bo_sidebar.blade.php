@@ -42,9 +42,10 @@
                                                     <ul class="sidebar_menu">
                                                         <a href="/budget-office-dashboard" class="links"><li class="list"><img src="images/dashboard_icon.png" class="img-fluid sidebar_menu_icons"> Dashboard</li></a>
                                                         <a href="/budget-office-budgets-planning" class="links"><li class="list"><img src="images/budget_icon.png" class="img-fluid sidebar_menu_icons"> Budget Planning</li></a>
-
                                                         <a href="/budget-office-budgets-allocation" class="links"><li class="list"><img src="images/budget_icon.png" class="img-fluid sidebar_menu_icons"> Budget Allocation</li></a>
-                                                        <a href="/budget-office-ppmp" class="links"><li class="list"><img src="images/ppmp_icon.png" class="img-fluid sidebar_menu_icons"> Reported PPMP</li></a>
+                                                        <a href="/budget-office-ppmp" class="links"><li class="list"><img src="images/ppmp_icon.png" class="img-fluid sidebar_menu_icons"> Pending PPMP</li></a>
+                                                        <a href="/budget-office-approved-ppmp" class="links"><li class="list"><img src="images/ppmp_icon.png" class="img-fluid sidebar_menu_icons"> Approved PPMP</li></a>
+                                                        <a href="/budget-office-declined-ppmp" class="links"><li class="list"><img src="images/ppmp_icon.png" class="img-fluid sidebar_menu_icons"> Declined PPMP</li></a>
                                                         <a href="/budget-office-reports" class="links"><li class="list"><img src="images/ppmp_icon.png" class="img-fluid sidebar_menu_icons"> Reports</li></a>
                                                     </ul>
                                                 </div>
