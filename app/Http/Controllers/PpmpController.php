@@ -20,6 +20,8 @@ class PpmpController extends Controller
 
         $inputs['ppmp_code'] = $code; //Help me creatre;
         $inputs['ppmp_status'] = 1;
+        $inputs['for_year'] = date("Y") + 1;
+        $inputs['app_code'] = "N/A";
 
         TblPpmp::create($inputs);
         Alert::success('Success', 'Adding PPMP success');

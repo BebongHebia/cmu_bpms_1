@@ -33,7 +33,9 @@
 
                     <div class="row mt-2">
                         <div class="col-sm-12">
-                            <a href="/budget-office-ppmp" class="btn btn-danger">Baack to main page</a>
+                            
+                            <a href="{{ url()->previous() }}" class="btn btn-danger">Back to main</a>
+                            
                         </div>
                     </div>
 

@@ -1,3 +1,8 @@
+<?php
+    $mysqli = mysqli_connect('localhost', 'root', '12345678', 'cmu_bpms') or die(mysqli_error());
+
+    $get_latest_id = mysqli_fetch_assoc($mysqli->query("SELECT * FROM tbl_unlisted_categories ORDER BY id desc LIMIT 1"));
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -79,7 +84,7 @@
                       <button class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#addng_item_not_available">Add item that is not available</button>
 
                       <!-- Modal -->
-                      <div class="modal fade" id="addng_item_not_available" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal modal-xl fade" id="addng_item_not_available" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                           <div class="modal-content">
                             <div class="modal-header">
@@ -97,13 +102,36 @@
                                 <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
                                 <input type="hidden" name="office_id" value="{{ auth()->user()->office->id }}">
                                 <input type="hidden" name="item_category_id" value="0">
+
+
+
                                 <label class="form-label">Item Name</label>
                                 <input type="text" name="item_name" class="form-control">
                                 <label class="form-label">Item Price</label>
                                 <input type="text" name="item_price" class="form-control">
+
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <label class="form-label">Select Category</label>
+                                        <select name="unlisted_category_id" class="form-select" id="categorySelect">
+                                            
+                                            @foreach ($get_unlisted_categories as $item_get_unlisted_categories)
+                                                <option value="{{ $item_get_unlisted_categories->id }}">{{ $item_get_unlisted_categories->category_name }}</option>
+                                            @endforeach
+                                            <option value="0">Add category on the right side</option>
+                                        </select>
+                                    </div>  
+                                    <div class="col-sm-6">
+                                        <label class="form-label">Or add category</label>
+                                        <input type="hidden" name="unlisted_categ_latest_id" value="{{ $get_latest_id['id'] }}">
+                                        <input type="text" name="category_name" class="form-control border border-dark" id="categoryInput" style="display: none;">
+                                    </div>
+                                </div>
+
                                 
                                 
                                 
+                                <!--
                                 <div class="row">
 
                                   <div class="col-sm-12">
@@ -149,6 +177,74 @@
                                     <label class="form-label">December</label>
                                     <input type="text" class="form-control" name="dec">
 
+                                  </div>
+
+                                </div>
+
+                                -->
+
+
+                                <h5 class="text-center">Schedule/Milestone of Activities</h5>
+                                <div class="row">
+
+                                  <div class="col-sm-1">
+                                    <label class="form-label">Jan</label>
+                                    <input type="text" class="form-control border border-dark" name="jan">
+                                  </div>
+
+                                  <div class="col-sm-1">
+                                    <label class="form-label">Feb</label>
+                                    <input type="text" class="form-control border border-dark" name="feb">
+                                  </div>
+
+                                  <div class="col-sm-1">
+                                    <label class="form-label">Mar</label>
+                                    <input type="text" class="form-control border border-dark" name="mar">
+                                  </div>
+
+                                  <div class="col-sm-1">
+                                    <label class="form-label">Apr</label>
+                                    <input type="text" class="form-control border border-dark" name="apr">
+                                  </div>
+
+                                  <div class="col-sm-1">
+                                    <label class="form-label">May</label>
+                                    <input type="text" class="form-control border border-dark" name="may">
+                                  </div>
+
+                                  <div class="col-sm-1">
+                                    <label class="form-label">Jun</label>
+                                    <input type="text" class="form-control border border-dark" name="jun">
+                                  </div>
+
+                                  <div class="col-sm-1">
+                                    <label class="form-label">Jul</label>
+                                    <input type="text" class="form-control border border-dark" name="jul">
+                                  </div>
+
+                                  <div class="col-sm-1">
+                                    <label class="form-label">Aug</label>
+                                    <input type="text" class="form-control border border-dark" name="aug">
+                                  </div>
+
+                                  <div class="col-sm-1">
+                                    <label class="form-label">Sep</label>
+                                    <input type="text" class="form-control border border-dark" name="sep">
+                                  </div>
+
+                                  <div class="col-sm-1">
+                                    <label class="form-label">Oct</label>
+                                    <input type="text" class="form-control border border-dark" name="oct">
+                                  </div>
+
+                                  <div class="col-sm-1">
+                                    <label class="form-label">Nov</label>
+                                    <input type="text" class="form-control border border-dark" name="nov">
+                                  </div>
+
+                                  <div class="col-sm-1">
+                                    <label class="form-label">Dec</label>
+                                    <input type="text" class="form-control border border-dark" name="dec">
                                   </div>
 
                                 </div>
@@ -199,7 +295,7 @@
         
         
                               <!-- Modal -->
-                              <div class="modal fade" id="select_item{{$item_row->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal modal-xl fade" id="select_item{{$item_row->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                   <div class="modal-content">
                                     <div class="modal-header">
@@ -232,51 +328,87 @@
                                           <div class="col-sm-12">
                                             <p class="text-start"><b>Item Name : </b>{{ $item_row->item_name }}</p>
                                             <p class="text-start"><b>Item Unit Size/Measure : </b>{{ $item_row->item_unit_measure }}</p>
-            
+                                            
+                                            <!--
                                             <label class="form-label" for="item_quantity_size">Item Quantity/Size</label>
                                             <input type="text" class="form-control" name="quantity_size" id="item_quantity_size">
-
-
-                                            <h5 class="text-start">Schedule/Milestone of Activities</h5>
-                                            <label class="form-label">January</label>
-                                            <input type="text" class="form-control" name="jan">
-
-                                            <label class="form-label">Febuary</label>
-                                            <input type="text" class="form-control" name="feb">
-
-                                            <label class="form-label">March</label>
-                                            <input type="text" class="form-control" name="mar">
-
-                                            <label class="form-label">April</label>
-                                            <input type="text" class="form-control" name="apr">
-
-                                            <label class="form-label">May</label>
-                                            <input type="text" class="form-control" name="may">
-
-                                            <label class="form-label">June</label>
-                                            <input type="text" class="form-control" name="jun">
-
-                                            <label class="form-label">July</label>
-                                            <input type="text" class="form-control" name="jul">
-
-                                            <label class="form-label">August</label>
-                                            <input type="text" class="form-control" name="aug">
-
-                                            <label class="form-label">September</label>
-                                            <input type="text" class="form-control" name="sep">
-
-                                            <label class="form-label">October</label>
-                                            <input type="text" class="form-control" name="oct">
-
-                                            <label class="form-label">November</label>
-                                            <input type="text" class="form-control" name="nov">
-
-                                            <label class="form-label">December</label>
-                                            <input type="text" class="form-control" name="dec">
-
+                                            -->
                                           </div>
 
                                         </div>
+
+                                        <div class="row">
+                                          <div class="col-sm-12">
+                                            <h5 class="text-center">Schedule/Milestone of Activities</h5>
+                                            
+                                          </div>
+                                        </div>
+
+                                        <div class="row">
+
+                                          <div class="col-sm-1">
+                                            <label class="form-label">Jan</label>
+                                            <input type="text" class="form-control border border-dark" name="jan">
+                                          </div>
+
+                                          <div class="col-sm-1">
+                                            <label class="form-label">Feb</label>
+                                            <input type="text" class="form-control border border-dark" name="feb">
+                                          </div>
+
+                                          <div class="col-sm-1">
+                                            <label class="form-label">Mar</label>
+                                            <input type="text" class="form-control border border-dark" name="mar">
+                                          </div>
+
+                                          <div class="col-sm-1">
+                                            <label class="form-label">Apr</label>
+                                            <input type="text" class="form-control border border-dark" name="apr">
+                                          </div>
+
+                                          <div class="col-sm-1">
+                                            <label class="form-label">May</label>
+                                            <input type="text" class="form-control border border-dark" name="may">
+                                          </div>
+
+                                          <div class="col-sm-1">
+                                            <label class="form-label">Jun</label>
+                                            <input type="text" class="form-control border border-dark" name="jun">
+                                          </div>
+
+                                          <div class="col-sm-1">
+                                            <label class="form-label">Jul</label>
+                                            <input type="text" class="form-control border border-dark" name="jul">
+                                          </div>
+
+                                          <div class="col-sm-1">
+                                            <label class="form-label">Aug</label>
+                                            <input type="text" class="form-control border border-dark" name="aug">
+                                          </div>
+
+                                          <div class="col-sm-1">
+                                            <label class="form-label">Sep</label>
+                                            <input type="text" class="form-control border border-dark" name="sep">
+                                          </div>
+
+                                          <div class="col-sm-1">
+                                            <label class="form-label">Oct</label>
+                                            <input type="text" class="form-control border border-dark" name="oct">
+                                          </div>
+
+                                          <div class="col-sm-1">
+                                            <label class="form-label">Nov</label>
+                                            <input type="text" class="form-control border border-dark" name="nov">
+                                          </div>
+
+                                          <div class="col-sm-1">
+                                            <label class="form-label">Dec</label>
+                                            <input type="text" class="form-control border border-dark" name="dec">
+                                          </div>
+
+                                        </div>
+
+                                        
                                         
         
                                     </div>
@@ -476,6 +608,22 @@
         });
       });
   </script>
+
+
+<script>
+  // Get references to the select and input elements
+  const categorySelect = document.getElementById('categorySelect');
+  const categoryInput = document.getElementById('categoryInput');
+
+  // Add an event listener for changes to the select element
+  categorySelect.addEventListener('change', function () {
+      if (categorySelect.value === '0') {
+          categoryInput.style.display = 'block';
+      } else {
+          categoryInput.style.display = 'none';
+      }
+  });
+</script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
   </body>
 

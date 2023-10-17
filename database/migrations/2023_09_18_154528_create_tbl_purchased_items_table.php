@@ -22,6 +22,7 @@ return new class extends Migration
             $table->String('item_name');
             $table->double('quantity_size');
             $table->Integer('item_category_id');
+            $table->Integer('unlisted_category_id');
             $table->Integer('purhcased_item_status');
             $table->String('date_procured');
             $table->Integer('jan');

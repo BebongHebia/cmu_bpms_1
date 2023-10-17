@@ -171,4 +171,5 @@ class UserController extends Controller
 
         return view('budget_office.bo_show_ppmp', ['this_ppmp' => $this_ppmp, 'office_info' => $office_info, 'user_info' => $user_info, 'this_purchased_items' => $this_purchased_items, 'budget_plan_info' => $budget_plan_info]);
     }
+
 }

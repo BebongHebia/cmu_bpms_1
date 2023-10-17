@@ -250,3 +250,59 @@
     text-align: center; /* Center horizontally */
     vertical-align: middle;
 }
+.approved_ppmp_page{
+    width:100%;
+    border-radius: 10px;
+    overflow: hidden;
+    
+}
+.approved_ppmp_page_header{
+    width:100%;
+    background-color:rgb(18, 21, 46);
+    color:white;
+}
+
+.approved_ppmp_page_card{
+    width: 20%;
+    padding:10px;
+    background-color:rgb(18, 21, 46);
+    border-radius: 10px;
+    color:white;
+}
+
+.approved_ppmp_table_container{
+    width:100%;
+    overflow: scroll;
+    height: 45vh;
+    border-radius: 5px;
+    border:1px solid rgb(172, 172, 172);
+    box-shadow: 5px 5px 5px gray;
+    padding:10px;
+}
+.approved_ppmp_table_wrapper{
+    width:100vw;
+}
+
+.declined_ppmp_page{
+    width:100%;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.declined_ppmp_page_card{
+    width: 20%;
+    padding:10px;
+    background-color:rgb(18, 21, 46);
+    border-radius: 10px;
+    color:white;
+}
+
+.declined_ppmp_container{
+    width:100%;
+    overflow: scroll;
+    height:45vh
+}
+
+.declined_ppmp_wrapper{
+    width:100vw;
+}

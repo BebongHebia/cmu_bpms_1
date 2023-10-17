@@ -98,20 +98,28 @@
                                                 @endif
                                             </td>
                                             <td rowspan="2">
-                                                <form action="/college_generate_my_ppmp" method="post">
-                                                    @csrf
-                                                    <input type="hidden" name="college_ppmp_id" value="{{ $item_myppmp->ppmp_id }}">
-                                                    <button class="btn btn-warning">Print PPMP</button>
-                                                </form>
+                                                <div class="row">
+                                                    <div class="col-sm-3">
+                                                        <form action="/college_generate_my_ppmp" method="post">
+                                                            @csrf
+                                                            <input type="hidden" name="college_ppmp_id" value="{{ $item_myppmp->ppmp_id }}">
+                                                            <button class="btn btn-warning">Print PPMP</button>
+                                                        </form>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        @if ($item_myppmp->ppmp_status == 1)
+                                                            <a href="/college-ppmp/ppmp={{ $item_myppmp->ppmp_code }}" class="btn btn-success">Purchase Item</a>
+                                                        @else
+                                                            <button class="btn btn-success" disabled>Purchase Item</button>
+                                                        @endif
+                                                        
+                                                        <button class="btn btn-danger">Delete</button>
+                                                    </div>
+                                                </div>
+                                                
                                                 
 
-                                                @if ($item_myppmp->ppmp_status == 1)
-                                                    <a href="/college-ppmp/ppmp={{ $item_myppmp->ppmp_code }}" class="btn btn-success">Purchase Item</a>
-                                                @else
-                                                    <button class="btn btn-success" disabled>Purchase Item</button>
-                                                @endif
                                                 
-                                                <button class="btn btn-danger">Delete</button>
                                                 
                                             
                                             </td>

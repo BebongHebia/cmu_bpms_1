@@ -11,15 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tbl_ppmps', function (Blueprint $table) {
+        Schema::create('tbl_unlisted_categories', function (Blueprint $table) {
             $table->id();
-            $table->String('ppmp_code');
-            $table->Integer('userid');
-            $table->Integer('office_id');
-            $table->Integer('budget_id');
-            $table->Integer('ppmp_status');
-            $table->Integer('for_year');
-            $table->String('app_code');
+            $table->string('category_name');
             $table->timestamps();
         });
     }
@@ -29,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tbl_ppms');
+        Schema::dropIfExists('tbl_unlisted_categories');
     }
 };

@@ -106,3 +106,46 @@
 .bac_ppmp_page_table_wrapper{
     width: 100vw;
 }
+
+.bac_consolidation_page{
+    width:100%;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.bac_consolidation_page_header{
+    background-color: rgb(18, 21, 46);
+    width: 100%;
+    color:white;
+}
+
+.bac_consolidation_page_card{
+    width:20%;
+    background-color: rgb(18, 21, 46);
+    padding:10px;
+    border-radius: 10px;
+    color:white;
+}
+
+.bac_consolidation_page_ppmp_container{
+    width:100%;
+    overflow: scroll;
+    height: 45vh;
+    border: 1px solid rgb(179, 179, 179);
+    border-radius: 10px;
+}
+
+.bac_consolidation_page_ppmp_warpper{
+    width:100%;
+}
+
+.bac_show_app_page{
+    width:100%;
+}
+
+#bac_app_table thead th{
+    background-color: rgb(247, 150, 70);
+    border: 1px solid black;
+    text-align: center; /* Center horizontally */
+    vertical-align: middle;
+}

@@ -20,6 +20,7 @@ class TblPurchasedItem extends Model
         'item_name',
         'quantity_size',
         'item_category_id',
+        'unlisted_category_id',
         'purhcased_item_status',
         'date_procured',
         'jan',
@@ -48,6 +49,11 @@ class TblPurchasedItem extends Model
     public function category()
     {
         return $this->belongsTo(TblItemCategory::class, 'item_category_id');
+    }
+
+    public function college_office_units()
+    {
+        return $this->belongsTo(TblOffice::class, 'office_id');
     }
 
    

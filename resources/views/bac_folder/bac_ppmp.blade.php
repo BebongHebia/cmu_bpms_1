@@ -22,14 +22,14 @@
                             <div class="bac_ppmp_page_card">
                                 <img src="images/card_ppmp_icon.png" class="img-fluid bac_card_icon">
                                 <h4 class="text-start"><b>30</b></h4>
-                                <p class="text-start">New PPMP for {{ date("Y") + 1 }}</p>
+                                <p class="text-start">Approved for {{ date("Y") + 1 }}</p>
                             </div>
                         </div>
                     </div>
 
                     <div class="row mt-2">
                         <div class="col-sm-12">
-                            <p class="text-start">List of unconsolidated ppmp</p>
+                            <p class="text-start">List of approved ppmp</p>
                         </div>
                     </div>
 
@@ -59,8 +59,7 @@
                                                 <td>{{ $bac_ppmp_unconsol_item->for_year }}</td>
 
                                                 <td>
-                                                    <button class="btn btn-success">Approve</button>
-                                                    <button class="btn btn-danger">Decline</button>
+                                                    <a href="/budget-office-ppmp/ppmp={{ $bac_ppmp_unconsol_item->id }}" class="btn btn-warning">Show PPMP</a>
                                                 </td>
                                             </tr>
                                         @endforeach

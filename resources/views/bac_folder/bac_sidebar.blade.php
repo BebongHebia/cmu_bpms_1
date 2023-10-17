@@ -41,9 +41,10 @@
                                                 <div class="col-sm-12">
                                                     <ul class="sidebar_menu">
                                                         <a href="/bac-office-dashboard" class="links"><li class="list"><img src="images/dashboard_icon.png" class="img-fluid sidebar_menu_icons"> Dashboard</li></a>
-                                                        <a href="/bac-office-ppmp" class="links"><li class="list"><img src="images/ppmp_icon.png" class="img-fluid sidebar_menu_icons"> PPMP</li></a>
-                                                        <a href="/bac-college-unit" class="links"><li class="list"><img src="images/department_icon.png" class="img-fluid sidebar_menu_icons"> Unit/Office/College</li></a>
-                                                        <a href="/bac-office-budgets-allocation" class="links"><li class="list"><img src="images/budget_icon.png" class="img-fluid sidebar_menu_icons"> Budget Allocation</li></a>
+                                                        <a href="/bac-office-budgets-allocation" class="links"><li class="list"><img src="images/budget_icon.png" class="img-fluid sidebar_menu_icons"> Budget Allocations</li></a>
+                                                        <a href="/bac-office-ppmp" class="links"><li class="list"><img src="images/ppmp_icon.png" class="img-fluid sidebar_menu_icons"> Approved PPMP</li></a>
+                                                        <a href="/bac-office-ppmp-consolidation" class="links"><li class="list"><img src="images/ppmp_icon.png" class="img-fluid sidebar_menu_icons"> Potential APP</li></a>
+                                                        <a href="/bac-office-app" class="links"><li class="list"><img src="images/ppmp_icon.png" class="img-fluid sidebar_menu_icons"> {{ date("Y") + 1 }} APP</li></a>
                                                         <a href="/bac-office-reports" class="links"><li class="list"><img src="images/ppmp_icon.png" class="img-fluid sidebar_menu_icons"> Reports</li></a>
                                                     </ul>
                                                 </div>
@@ -51,6 +52,8 @@
                                         </div>
                                     </div>
                                 </div>
+
+
                             </div>
                         </div>
                         <div class="col-sm-10">

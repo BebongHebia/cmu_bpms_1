@@ -9,6 +9,7 @@ use App\Models\TblBudgetPlan;
 use App\Models\TblDepartment;
 use App\Models\TblItemCategory;
 use App\Models\TblPurchasedItem;
+use App\Models\TblUnlistedCategory;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PpmpController;
 use App\Http\Controllers\UserController;
@@ -79,9 +80,7 @@ Route::get('/bac-office-dashboard', function(){
     return view('bac_folder/bac_dashboard');
 });
 
-Route::get('/bac-college-unit', function(){
-    return view('bac_folder/bac_college');
-});
+
 
 Route::get('/bac-office-budgets-allocation', function(){
     return view('bac_folder/bac_budgets');
@@ -94,10 +93,41 @@ Route::get('/bac-office-reports', function(){
 Route::get('/bac-office-ppmp', function(){
 
     $bac_ppmp = TblPpmp::where('for_year', date("Y") + 1)
-                        ->where('ppmp_status', 1)
+                        ->where('ppmp_status', 0)
                         ->get();
 
     return view('bac_folder/bac_ppmp', ['bac_ppmp_unconsol' => $bac_ppmp]);
+});
+
+Route::get('/bac-office-ppmp-consolidation', function (){
+    $potential_ppmp = TblPpmp::select(DB::raw('count(*) as count'), 'for_year')
+    ->where('ppmp_status', 0)
+    ->groupBy('for_year')
+    ->get();
+
+    $all_units_offce_college = DB::table('tbl_purchased_items')
+    ->join('tbl_ppmps', 'tbl_purchased_items.ppmp_id', '=', 'tbl_ppmps.id')
+    ->join('tbl_offices', 'tbl_purchased_items.office_id', '=', 'tbl_offices.id')
+    ->where('tbl_ppmps.ppmp_status', 0)
+    ->groupBy('tbl_purchased_items.office_id')
+    ->select('tbl_purchased_items.office_id', 'tbl_offices.office_name as office_name') // Select the column you want to group by
+    ->get();
+
+    $ppmpCounts = DB::table('tbl_purchased_items')
+    ->join('tbl_ppmps', 'tbl_purchased_items.ppmp_id', '=', 'tbl_ppmps.id')
+    ->where('tbl_ppmps.for_year', date("Y") + 1)
+    ->where('tbl_ppmps.ppmp_status', 0)
+    ->groupBy('tbl_purchased_items.office_id')
+    ->selectRaw('tbl_purchased_items.office_id, count(*) as ppmp_count')
+    ->get();
+
+    return view('bac_folder.bac_consolidate_ppmp', ['potential_ppmp' => $potential_ppmp, 'all_units_offce_college' => $all_units_offce_college, 'ppmpCounts' => $ppmpCounts]);
+});
+
+Route::post('/bac-create-app', [PurchasedItemsController::class, 'create_anual_procurement_plan']);
+
+Route::get('/bac-office-app', function (){
+    return view('bac_folder.bac_show_app');
 });
 
 Route::get('/college_sidebar', function(){
@@ -115,6 +145,17 @@ Route::get('/budget-office-ppmp', function(){
                 ->get();
 
     return view('budget_office/bo_ppmp', ['pending_ppmp' => $pending_ppmp]);
+});
+
+Route::get('/budget-office-declined-ppmp', function(){
+    $declined_ppmp = TblPpmp::where('ppmp_status', '2')->where('for_year', date("Y") + 1)->get();
+    return view('budget_office/bo_decline_ppmp', ['declined_ppmp' => $declined_ppmp]);
+});
+
+Route::get('/budget-office-approved-ppmp', function(){
+
+    $approved_ppmp = TblPpmp::where('ppmp_status', '0')->where('for_year', date("Y") + 1)->get();
+    return view('budget_office.bo_approved_ppmp', ['approved_ppmp' => $approved_ppmp]);
 });
 
 Route::post('/bo-action-approve-ppmp', [PurchasedItemsController::class, 'budget_approve_ppmp']);
@@ -200,6 +241,11 @@ Route::get('/college-ppmp', function(){
 
 Route::get('/college-ppmp/ppmp={ppmp_id}', function($ppmp_id){
 
+    $get_unlisted_categories = DB::table('tbl_unlisted_categories')
+    ->selectRaw('*, (SELECT COUNT(*) FROM tbl_unlisted_categories) as unlisted_categ_count')
+    ->orderBy('category_name')
+    ->get();
+
     $userId = auth()->user()->id;
     
     $result = DB::table('tbl_purchased_items')
@@ -222,15 +268,11 @@ Route::get('/college-ppmp/ppmp={ppmp_id}', function($ppmp_id){
     ->select('users.*', 'tbl_purchased_items.*', 'tbl_purchased_items.id as purchased_item_id')
     ->get();
 
-
-
-    
-
     $get_ppmp_details = TblPpmp::where('ppmp_code', '=', $ppmp_id)->first(); // Use first() to retrieve a single row
     
     $budgets_details = TblBudget::find($get_ppmp_details->budget_id);
     
-    return view('college_folder/college_purchase_item', compact('get_ppmp_details'), ['items' => TblItem::all(), 'my_purchased_items' => $result, 'budgets_details' => $budgets_details, 'my_purchased_purchase_item_no_available' => $my_purchased_purchase_item_no_available]);
+    return view('college_folder/college_purchase_item', compact('get_ppmp_details'), ['items' => TblItem::all(), 'my_purchased_items' => $result, 'budgets_details' => $budgets_details, 'my_purchased_purchase_item_no_available' => $my_purchased_purchase_item_no_available, 'get_unlisted_categories' => $get_unlisted_categories]);
 });
 
 Route::post('/college-remove-purchased-item', [PurchasedItemsController::class, 'college_remove_item']);

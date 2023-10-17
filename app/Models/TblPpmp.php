@@ -16,6 +16,8 @@ class TblPpmp extends Model
         'office_id',
         'budget_id',
         'ppmp_status',
+        'for_year',
+        'app_code',
     ];
 
     public function budget(){
